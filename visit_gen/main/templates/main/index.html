@@ -1,0 +1,151 @@
+{% extends 'main/layout.html' %}
+{% block title_page %}Главная | VisGen{% endblock %}
+{% block title %}{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="col-lg p-5 mb-2 rounded-4 sh">
+            <h3 class="text-center">Найти визитку по ID: </h3>
+            <br>
+            <form method="post" action="search" name="searchbyid" class="needs-validation" novalidate>
+                {% csrf_token %}
+                <div class="form-group text-center">
+                    <input type="text" class="form-control p-2" name="id" placeholder="Введите id визитки" required>
+                    <div class="invalid-feedback">
+                        Введите id визитки!
+                    </div>
+                </div>
+                <br>
+                <button type="submit">Поиск</button>
+            </form>
+        </div>
+        <br>
+        <h3 class="text-center">Создайте свою визитку </h3>
+        <br>
+        <div class="col-lg mb-2 rounded-4 p-5 sh">
+            <div id="navBar">
+                <span id="switchUSR" onclick="formInit('USR')">Физ. лицо</span>
+                <span class="nowClosed" id="switchIP" onclick="formInit('IP')">ИП / Компания</span>
+            </div>
+            <br>
+            <br>
+            <br>
+            <h6 class="text-center">Заполните следующие поля:</h6>
+            <br>
+            <form action="USR" method="post" class="needs-validation" id="formUSR" novalidate>
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="mb-3 form-label need"><i class="fa-solid fa-person"></i> ФИО: </label>
+                    <input type="text" class="form-control" name="name" placeholder="Иванов Иван Иванович" required>
+                    <div class="invalid-feedback">
+                        Введите ФИО!
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label class="mb-3 form-label need"><i class="fa-solid fa-phone"></i> Номер телефона: </label>
+                    <input type="text" class="form-control phone" name="phone_number" placeholder="+7 (___) ___-__-__" required>
+                    <div class="invalid-feedback">
+                        Введите корректный номер телефона!
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label class="mb-3 form-label need"><i class="fa-solid fa-envelope"></i> Адрес электронной почты: </label>
+                    <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="example@mail.ru" required>
+                    <div class="invalid-feedback">
+                        Введите корректный email!
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label class="mb-3 form-label"><i class="fa-brands fa-telegram"></i> Telegram: </label>
+                    <input type="text" class="form-controlSocial" name="telegram" id="T" placeholder="https://t.me/...">
+                    <div class="invalid-feedback" id="alertT">
+                        Введите корректный Telegram!
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label class="mb-3 form-label"><i class="fa-brands fa-vk"></i> VK: </label>
+                    <input type="text" class="form-controlSocial" name="vk" id="V" placeholder="https://vk.com/...">
+                    <div class="invalid-feedback" id="alertV">
+                        Введите корректный VK!
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label class="mb-3 form-label"><i class="fa-brands fa-youtube"></i> YouTube: </label>
+                    <input type="text" class="form-controlSocial" name="youtube" id="Y" placeholder="https://www.youtube.com/...">
+                    <div class="invalid-feedback" id="alertY">
+                        Введите корректный YouTube!
+                    </div>
+                </div>
+                <a class="needNote">* Данное поле обязательно</a>
+                <br>
+                <button type="submit" id="Send">Создать визитку</button>
+            </form>
+
+            <form action="IP" method="post" class="needs-validation" id="formIP" novalidate>
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="mb-3 form-label need"><i class="fa-solid fa-person"></i> ФИО ИП / Название компании: </label>
+                    <input type="text" class="form-control" name="name" placeholder='Иванов Иван Иванович / ООО "Ромашка" ' required>
+                    <div class="invalid-feedback">
+                        Введите ФИО ИП / название компании!
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label class="mb-3 form-label need"><i class="fa-solid fa-phone"></i> Номер телефона: </label>
+                    <input type="text" class="form-control phone" name="phone_number" placeholder="+7 (___) ___-__-__" required>
+                    <div class="invalid-feedback">
+                        Введите корректный номер телефона!
+                    </div>
+{#                    <p class="p-3 note"><i class="fa-solid fa-circle-exclamation"></i> Если имеется несколько номеров, записать их через запятую и пробел, если номер один, проигнорировать запятую и пробел.</p>#}
+                </div>
+                <br>
+                <div class="form-group">
+                    <label class="mb-3 form-label need"><i class="fa-solid fa-envelope"></i> Адрес электронной почты: </label>
+                    <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="example@mail.ru" required>
+                    <div class="invalid-feedback">
+                        Введите корректный email!
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label class="mb-3 form-label need"><i class="fa-solid fa-location-dot"></i> Адрес: </label>
+                    <input type="text" class="form-control" name="address" placeholder="г. Москва, ..." required>
+                    <div class="invalid-feedback">
+                        Введите адрес!
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label class="mb-3 form-label need"><i class="fa-solid fa-briefcase"></i> Укажите вид деятельности: </label>
+                    <input type="text" class="form-control" name="type_activ" placeholder="Ремонт техники" required>
+                    <div class="invalid-feedback">
+                        Укажите вид деятельности!
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label class="mb-3 form-label"><i class="fa-solid fa-user-tie"></i> Директор компании: </label>
+                    <input type="text" class="form-control" name="director" placeholder="Иванов Иван Иванович">
+                    <p class="p-3 note"><i class="fa-solid fa-circle-exclamation"></i> Если заполняется для ИП, пропустите данное поле.</p>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label class="mb-3 form-label"><i class="fa-solid fa-link"></i> Ссылка на веб-сайт: </label>
+                    <input type="text" class="form-control" name="site_url" id="L" placeholder="https://...">
+                    <div class="invalid-feedback" id="alertL">
+                        Введите корректную ссылку!
+                    </div>
+                </div>
+                <br>
+                <a class="needNote">* Данное поле обязательно</a>
+                <button type="submit" id="Send">Создать визитку</button>
+            </form>
+        </div>
+        <br>
+    </div>
+{% endblock %}

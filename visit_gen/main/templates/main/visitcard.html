@@ -1,0 +1,47 @@
+{% extends 'main/layout.html' %}
+{% block title_page %}Визитная карточка | VisGen{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row align-items-start">
+        <div class="col-lg">
+            <div class="m-1 p-2 sh card">
+                <h5 class="text-center" id="vcType">Контакты пользователя:</h5>
+                <hr>
+                <br>
+                <ol class="list-group list-group-numbered">
+                    <li class="name"><h3 class="text-end p-0" id="id"><b>id: {{id}}</b></h3><h1>{{name}}</h1></li>
+                    <br>
+                    <hr>
+                    <br>
+                    <li class="p-2 h3 text-muted"><i class="fa-solid fa-phone"></i> {{phone_number}}</li>
+                    <h3><li class="p-2" id="varElementE"><i class="text-muted" id="E">{{email}}</i></li></h3>
+                    <br><hr><br>
+                    <li class="p-2 text-center" id="other"><h3><b>Другие контакты:</b></h3></li>
+                    <br>
+                    <h3><li class="p-2" id="varElementT"><i class="text-muted" id="T">{{telegram}}</i></li></h3>
+                    <h3><li class="p-2" id="varElementV"><i class="text-muted" id="V">{{vk}}</i></li></h3>
+                    <h3><li class="p-2" id="varElementY"><i class="text-muted" id="Y">{{youtube}}</i></li></h3>
+                    <br>
+                    <li class="text-center" id="clickable"><h6>Ссылки и email кликабельны</h6></li>
+                    <br>
+                </ol>
+            </div>
+            <br>
+        </div>
+        <div class="qr col-lg">
+            <div class="m-1 p-2 sh text-center card text-shadow-1">
+                <h5 class="text-center">QR-код со ссылкой на эту визитку:</h5>
+                <hr><br>
+                <div id="qrcode"></div>
+                <br><br>
+                <h6 class="text-left">Наведите на него камеру смартфона</h6>
+                <br><hr>
+                <h4 class="text-left text-muted" id="ad">Хочешь себе такую же визитку?</h4>
+                <hr><br>
+                <h6 class="text-left p-4">Тогда переходи <a class="text-decoration-none fw-bold text-muted" href="/">на главную страницу</a> и создай собственную визитную карточку за пару простых шагов!</h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
